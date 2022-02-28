@@ -41,14 +41,18 @@ eliminateImplications (a :<=> b) =
    in (not' na :+ nb) :* (na :+ not' nb)
 
 applyDeMorgansLaws :: Expr -> Expr
-applyDeMorgansLaws (Var (Not (Not (Lit a)))) = Var (Lit a)
-applyDeMorgansLaws p = p
+applyDeMorgansLaws expr = case expr of (Var (Not (Not (Lit a)))) -> Var (Lit a)
+                                       _ -> expr
 
 nnf :: Expr -> Expr
-nnf (a :* b) = applyDeMorgansLaws $ eliminateImplications a :* eliminateImplications b
-nnf (a :+ b) = applyDeMorgansLaws $ eliminateImplications a :+ eliminateImplications b
-nnf (p :=> c) = applyDeMorgansLaws $ not' p :+ c
-nnf other = applyDeMorgansLaws other
+nnf expr = let adl = applyDeMorgansLaws
+               ea = eliminateImplications a
+               eb = eliminateImplications b
+               in case expr of (a :* b)   -> adl $ ea :* eb
+                               (a :+ b)   -> adl $ ea :+ eb
+                               (a :=> b)  -> adl $ not' a :+ b
+                               (a :<=> b) -> adl $ (not' a :+ b) :* (a :+ not' b)
+                               _ -> adl expr
 
 distributeConjunctions :: Expr -> Expr
 distributeConjunctions (a :* (b :+ c)) = let f = distributeConjunctions in (f a :* f b) :+ (f a :* f c)
