@@ -77,7 +77,7 @@ distributeConjunctions expr =
         _ -> expr 
 
 dnf :: Expr -> Expr
-dnf formula = pushNegation $ distributeConjunctions $ nnf formula
+dnf formula = distributeConjunctions $ nnf formula
 
 distributeDisjunctions :: Expr -> Expr
 distributeDisjunctions expr =
@@ -88,5 +88,5 @@ distributeDisjunctions expr =
         _ -> expr
 
 cnf :: Expr -> Expr
-cnf formula = pushNegation $ distributeDisjunctions $ nnf formula
+cnf formula = distributeDisjunctions $ nnf formula
 
