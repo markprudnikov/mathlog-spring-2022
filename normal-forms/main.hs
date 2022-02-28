@@ -1,12 +1,14 @@
+import Control.Monad (forM)
 type Symb = Char
 
 data Literal = Lit Symb | Not Literal
-    deriving(Show) 
+    deriving(Show)
 
 infixl 7 :*
 infixl 6 :+
 infixr 5 :=>
 infixr 5 :<=>
+
 data Expr = Var Literal | Expr :* Expr | Expr :+ Expr | Expr :=> Expr | Expr :<=> Expr
     deriving(Show)
 
@@ -34,10 +36,18 @@ eliminateImplications (a :<=> b) = let nb = eliminateImplications b
 
 applyDeMorgansLaws :: Expr -> Expr
 applyDeMorgansLaws (Var (Not (Not (Lit a)))) = Var (Lit a)
-applyDeMorgansLaws p = p 
+applyDeMorgansLaws p = p
 
 nnf :: Expr -> Expr
-nnf (a :* b) = applyDeMorgansLaws $ (eliminateImplications a) :* (eliminateImplications b)
-nnf (a :+ b) = applyDeMorgansLaws $ (eliminateImplications a) :+ (eliminateImplications b)
+nnf (a :* b) = applyDeMorgansLaws $ eliminateImplications a :* eliminateImplications b
+nnf (a :+ b) = applyDeMorgansLaws $ eliminateImplications a :+ eliminateImplications b
 nnf (p :=> c) = applyDeMorgansLaws $ not' p :+ c
 nnf other = applyDeMorgansLaws other
+
+distributeConjunctions :: Expr -> Expr
+distributeConjunctions (a :* (b :+ c)) = let f = distributeConjunctions in ((f a) :* (f b)) :+ ((f a) :* (f c))
+distributeConjunctions ((a :+ b) :* c) = let f = distributeConjunctions in ( (f a) :* (f c) ) :+ ( (f b) :* (f c) )
+distributeConjunctions a = a
+
+dnf :: Expr -> Expr
+dnf formula = distributeConjunctions $ nnf formula
