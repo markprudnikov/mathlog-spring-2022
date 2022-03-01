@@ -23,7 +23,7 @@ instance Show Expr where
     show (Not expr) = case expr of (e1 :+ e2) -> "!" ++ show expr
                                    _ -> "!(" ++ show expr ++ ")"
     show (e1 :=> e2) = "(" ++ show e1 ++ " :=> " ++ show e2 ++ ")"
-    show (e1 :<=> e2) = show "(" ++ show e1 ++ " :=> " ++ show e2 ++ ")"
+    show (e1 :<=> e2) = "(" ++ show e1 ++ " :=> " ++ show e2 ++ ")"
 
 x = Var (Lit 'x')
 y = Var (Lit 'y')
