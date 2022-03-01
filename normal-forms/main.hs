@@ -15,7 +15,15 @@ infixr 5 :=>
 infixr 5 :<=>
 
 data Expr = Var Literal | Expr :* Expr | Expr :+ Expr | Expr :=> Expr | Expr :<=> Expr | Not Expr
-   deriving(Show)
+
+instance Show Expr where
+    show (Var lit) = show lit
+    show (e1 :* e2) = show e1 ++ " /\\ " ++ show e2
+    show (e1 :+ e2) = "(" ++ show e1 ++ " \\/ " ++ show e2 ++ ")"
+    show (Not expr) = case expr of (e1 :+ e2) -> "!" ++ show expr
+                                   _ -> "!(" ++ show expr ++ ")"
+    show (e1 :=> e2) = "(" ++ show e1 ++ " :=> " ++ show e2 ++ ")"
+    show (e1 :<=> e2) = show "(" ++ show e1 ++ " :=> " ++ show e2 ++ ")"
 
 x = Var (Lit 'x')
 y = Var (Lit 'y')
@@ -74,6 +82,9 @@ distributeConjunctions expr =
     case expr of
         (a :* (b :+ c)) -> (f a :* f b) :+ (f a :* f c)
         ((a :+ b) :* c) -> (f a :* f c) :+ (f b :* f c)
+        (a :* b) -> f a :* f b
+        (a :+ b) -> f a :+ f b
+        (Not a) -> Not (f a)
         _ -> expr 
 
 dnf :: Expr -> Expr
@@ -85,6 +96,9 @@ distributeDisjunctions expr =
     case expr of
         (a :+ (b :* c)) -> (d a :+ d b) :* (d a :+ d c)
         ((a :* b) :+ c) -> (d a :+ d b) :* (d b :+ d c)
+        (a :* b) -> d a :* d b
+        (a :+ b) -> d a :+ d b
+        (Not a) -> Not (d a)
         _ -> expr
 
 cnf :: Expr -> Expr
