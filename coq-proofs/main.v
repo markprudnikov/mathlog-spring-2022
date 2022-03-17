@@ -36,24 +36,63 @@ Check
 
 
 (* Exercise 3: Prove disjunction distributes over conjunction: *)
+Theorem disj_over_conj: A \/ (B /\ C) -> (A \/ B) /\ (A \/ C).
+Proof.
+  split.
+  - destruct H as [A | [B C]].
+    + left. exact A.
+    + right. exact B.
+  - destruct H as [A | [B C]].
+    + left. exact A.
+    + right. exact C.
+Qed.
 Check
-  (_)
+  (disj_over_conj)
 : A \/ (B /\ C) -> (A \/ B) /\ (A \/ C).
 
 (* Exercise 4: Prove weak form of Peirce's law holds in intuitionistic logic *)
+
+Theorem weak_peirce: ((((A -> B) -> A) -> A) -> B) -> B.
+Proof.
+  intros.
+  apply H. 
+  intros.
+  apply H0.
+  intros.
+  apply H.
+  intros.
+  exact H1.
+Qed.
+
 Check
-  (_)
+  (weak_peirce)
 : ((((A -> B) -> A) -> A) -> B) -> B.
 
 (* Exercise 5: We can always add double negation (but cannot drop it in general) *)
+Theorem add_double_negation: A -> ~~A.
+Proof.
+  intros.
+  unfold not.
+  intros.
+  exact (H0 H).
+Qed.
+
 Check
-  (_)
+  (add_double_negation)
 : A -> ~ ~ A.
 
 (* Exercise 6: Although we can in some special cases like the following: *)
+Theorem strange_negation: ~~~A -> ~A.
+Proof.
+  intros.
+  unfold not.
+  intros.
+  exact (H (add_double_negation H0)).
+Qed.
+
 Check
-  (_)
-: ~ ~ ~ A -> ~ A
+  (strange_negation)
+: ~ ~ ~ A -> ~ A.
 
 (* Exercise 7: Prove we cannot add the negation of the law of excluded middle and have a sound logic.
    Keep in mind that "~ A" means "A -> False" *)
