@@ -1,11 +1,18 @@
 # Mathlog course spring 2022
 
 # Table of Contents
-1. [Normal forms converter](#hw1:-normal-forms-converter)
-2. [N-Queens problem](#hw2:-n-queens-problem)
-3. [Coq proofs](#hw3:-coq-proofs)
+1. [Normal forms converter](#hw-1)
+2. [N-Queens problem](#hw-2)
+3. [Coq proofs](#hw-3)
+4. [TODO](#hw-4)
+5. [TODO](#hw-5)
+6. [TODO](#hw-6)
+7. [TODO](#hw-7)
+8. [TODO](#hw-8)
 
-## HW1: Normal forms converter
+<div id='hw-1'/>
+
+## HW №1: Normal forms converter
 
 ### Задание
 Реализовать 3 функции:
@@ -25,8 +32,9 @@
 - Для последнего пункта экстра баллы можно получить за алгоритм Цейтина.
 - Помимо unit-тестов можно использовать рандомизированное тестирование (QuickCheck и подобные вещи), если хотите получить экстра баллы.
 
+<div id='hw-2'/>
 
-## HW2: N-Queens problem 
+## HW №2: N-Queens problem 
 
 ### Задание
 Решить задачу о `n` ферзях, сведя её к `SAT`-задаче. Сгенерируйте входной файл для SAT-решателя программно и вызовите решатель. Ваша программа должна вернуть расстановку.
@@ -43,6 +51,8 @@ Cделать это по следующей схеме:
 ### Дополнительные баллы    
 Доп баллы можно получить за использование API солверов и любую креативность.
 
+<div id='hw-3'/>
+
 ## HW3: Coq proofs
 
 ### Задание
@@ -50,12 +60,23 @@ Cделать это по следующей схеме:
 
 ### Дополнительные баллы    
 Последнее задание бонусное.
-<!-- ### Homework №4
 
-### Homework №5
+<div id='hw-4'/>
 
-### Homework №6
+## HW №4
 
-### Homework №7
+<div id='hw-5'/>
 
-### Homework №8 -->
+## HW №5
+
+<div id='hw-6'/>
+
+## HW №6
+
+<div id='hw-7'/>
+
+## HW №7
+
+<div id='hw-8'/>
+
+## HW №8
