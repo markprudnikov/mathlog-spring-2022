@@ -1,4 +1,9 @@
+module Main where
+main :: IO ()
+main = return ()
+
 type Symb = Char
+
 
 data Literal = Lit Symb | NegLit Symb
 
