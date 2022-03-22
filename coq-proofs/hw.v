@@ -48,5 +48,29 @@ Check
 (* Exercise 7: Prove we cannot add the negation of the law of excluded middle and have a sound logic.
    Keep in mind that "~ A" means "A -> False" *)
 Check
-  (fun ns => ns _)
+  (
+      fun ns => ns (or_intror (fun s : A => ns (or_introl s)) )
+  )
 : ~ ~ (A \/ ~ A).
+
+(* ns: (A \/ ~A) -> False  *)
+(* s : A *)
+(* or_introl s : A \/ ~A *)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
