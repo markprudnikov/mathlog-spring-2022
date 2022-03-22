@@ -56,21 +56,3 @@ Check
 (* ns: (A \/ ~A) -> False  *)
 (* s : A *)
 (* or_introl s : A \/ ~A *)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
