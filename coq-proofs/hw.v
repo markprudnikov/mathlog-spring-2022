@@ -48,5 +48,5 @@ Check
 (* Exercise 7: Prove we cannot add the negation of the law of excluded middle and have a sound logic.
    Keep in mind that "~ A" means "A -> False" *)
 Check
-  (_)
+  (fun ns => ns _)
 : ~ ~ (A \/ ~ A).
