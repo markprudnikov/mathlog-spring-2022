@@ -1,5 +1,10 @@
 # Mathlog course spring 2022
 
+# Table of Contents
+1. [Normal forms converter](#hw1:-normal-forms-converter)
+2. [N-Queens problem](#hw2:-n-queens-problem)
+3. [Coq proofs](#hw3:-coq-proofs)
+
 ## HW1: Normal forms converter
 
 ### Задание
