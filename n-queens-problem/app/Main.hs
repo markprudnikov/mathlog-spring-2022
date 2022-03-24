@@ -5,7 +5,7 @@ import Picosat ( solve, Solution(Solution) )
 import System.Environment (getArgs)
 
 replace :: Int -> a -> [a] -> [a]
-replace pos newVal list = take pos list ++ newVal : drop (pos+1) list
+replace index newVal list = take index list ++ newVal : drop (index + 1) list
 
 setQueen :: (Int, Int) -> [[Char]] -> [[Char]]
 setQueen (x,y) pole = replace x (replace y 'Q' (pole !! x)) pole
