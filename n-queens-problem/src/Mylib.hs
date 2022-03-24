@@ -1,4 +1,6 @@
-import Picosat ( solve, Solution(Solution) )
+module Mylib where 
+
+import Picosat ( Solution(Solution) )
 
 type Literal = Int
 type Clause = [Literal]
@@ -40,14 +42,8 @@ getCNFTwoCells n cells = do
                     then return [-flit, -slit] -- De Morgans Law
                     else []
 
-resolveSAT :: Int -> CNF -> IO String
-resolveSAT n cnf = fmap (printResult n) (solve cnf)
-
 printResult :: Int -> Solution -> String
 printResult n (Solution []) = ""
 printResult n (Solution (x:xs)) | x < 0 = printResult n (Solution xs)
                                 | otherwise = let p = fromSingleToPair n x in show (fst p + 1) ++ " " ++ show (snd p + 1) ++ "; " ++ printResult n (Solution xs)
 printResult n _ = " "
-
-getQueensSet :: Int -> IO String
-getQueensSet n = resolveSAT n (getCNF n)
