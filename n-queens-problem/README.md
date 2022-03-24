@@ -12,15 +12,11 @@ $ cabal run 'n-queens-problem' 4
 ----------
 Solution:
 ----------
-1 3
-2 1
-3 4
-4 2
+[..Q.]
+[Q...]
+[...Q]
+[.Q..]
 ----------
 $ cabal run 'n-queens-problem' 3
-----------
-Solution:
-----------
-Problem has no solution
-----------
+Problem has no solutions
 ```

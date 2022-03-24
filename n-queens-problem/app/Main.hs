@@ -14,11 +14,11 @@ setAllQueens :: Int -> Solution -> [[Char]] -> [[Char]]
 setAllQueens n (Solution []) pole = pole
 setAllQueens n (Solution (x:xs)) pole | x < 0 = setAllQueens n (Solution xs) pole
                                       | otherwise = let p = fromSingleToPair n x in setAllQueens n (Solution xs) $ setQueen p pole
-setAllQueens n _ _ = ["Problem has no solution"]
+setAllQueens n _ _ = ["Problem has no solutions"]
 
 setToString :: [[Char]] -> String
-setToString ["Problem has no solution"] = "Problem has no solution"
-setToString lst = "----------\nSolution:\n----------\n" ++ foldr (\slovo -> (("[" ++ slovo ++ "]\n") ++)) [] lst ++ "----------"
+setToString ["Problem has no solutions"] = "Problem has no solutions"
+setToString lst = "----------\nSolution:\n----------\n" ++ foldr (\w -> (("[" ++ w ++ "]\n") ++)) [] lst ++ "----------"
 
 main :: IO ()
 main = do
