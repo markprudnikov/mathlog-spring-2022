@@ -9,7 +9,18 @@
 
 ```
 $ cabal run 'n-queens-problem' 4
-1 3; 2 1; 3 4; 4 2;
+----------
+Solution:
+----------
+1 3
+2 1
+3 4
+4 2
+----------
 $ cabal run 'n-queens-problem' 3
+----------
+Solution:
+----------
 Problem has no solution
+----------
 ```
