@@ -1,4 +1,4 @@
-module Mylib where 
+module QueenFormulaGen where 
 
 import Picosat ( Solution(Solution) )
 
@@ -41,9 +41,3 @@ getCNFTwoCells n cells = do
                 if flit < slit && checkCut f s
                     then return [-flit, -slit] -- De Morgans Law
                     else []
-
-printResult :: Int -> Solution -> String
-printResult n (Solution []) = ""
-printResult n (Solution (x:xs)) | x < 0 = printResult n (Solution xs)
-                                | otherwise = let p = fromSingleToPair n x in show (fst p + 1) ++ " " ++ show (snd p + 1) ++ "; " ++ printResult n (Solution xs)
-printResult n _ = " "
