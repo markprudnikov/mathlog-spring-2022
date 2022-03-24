@@ -1,6 +1,6 @@
 module Main where
 
-import QueenFormulaGen ( getCNF, fromSingleToPair )
+import QueenFormulaGen
 import Picosat ( solve, Solution(Solution) )
 import System.Environment (getArgs)
 
