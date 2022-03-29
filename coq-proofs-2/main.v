@@ -19,11 +19,7 @@ Definition and_via_ex (A B : Prop) :
 Definition Frobenius2 :=
   forall (A : Type) (P : A -> Prop) (Q : Prop),
     (forall x, Q \/ P x) <-> (Q \/ forall x, P x).
-(* fun x gVfx => 
-      match gVfx with
-      | or_introl gVfx => _
-      | or_intror gVfx => _
-      end *)
+
 Definition LEM_iff_Frobenius2 :
   (forall P : Prop, P \/ ~ P) <-> Frobenius2
 := provide_solution.
