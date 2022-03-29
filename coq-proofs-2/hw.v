@@ -47,7 +47,7 @@ Definition eqext_refl :
 
 (** Exercise: Symmetry *)
 Definition eqext_sym :
-  forall (f g : A -> B), f =1 g -> g =1 f (* (forall x, f x = g x) *)
+  forall (f g : A -> B), f =1 g -> g =1 f
   := fun f g fg a => eq_sym (fg a).
     
 (** Exercise: Transitivity *)
@@ -59,12 +59,12 @@ Definition eqext_trans :
 Definition eq_compl :
   forall (f g : A -> B) (h : B -> C),
     f =1 g -> h \o f =1 h \o g
-:= provide_solution.
+:= fun f g h feg a => f_equal h (feg a).
 
 (** Exercise: right congruence *)
 Definition eq_compr :
   forall (f g : B -> C) (h : A -> B),
     f =1 g -> f \o h =1 g \o h
-:= provide_solution.
+:= fun f g h feg a => feg (h a).
 
 End ExtensionalEqualityAndComposition.
